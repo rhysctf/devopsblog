@@ -17,5 +17,14 @@
         </tr>
         {% endfor %}
     </table>
+
+    <h2>Add New Extension</h2>
+    <form action="/add_extension" method="post">
+        <label for="name">Extension Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="downloads">Downloads:</label><br>
+        <input type="text" id="downloads" name="downloads"><br><br>
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
