@@ -9,3 +9,5 @@ docker build -t rhys7homas/devopsblog-image:$1 .
 docker push rhys7homas/devopsblog-image:$1
 
 echo "Done"
+
+# ./build.sh v1.0.0 "this is the github commit code"
