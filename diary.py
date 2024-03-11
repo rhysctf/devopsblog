@@ -19,8 +19,8 @@ cursor = conn.cursor()
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS diarys (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255),
-        downloads INT(15)
+        feature VARCHAR(255),
+        description INT(15)
     )
 """)
 
@@ -29,18 +29,18 @@ cursor.execute("""
 def show_exts():
     
     # Retrieve data from the database
-    cursor.execute("SELECT name, downloads FROM diarys")
+    cursor.execute("SELECT feature, description FROM diarys")
     diarys = cursor.fetchall()
     return render_template('diarys.html', diarys=diarys)
 
 # Define route to add new extension
 @app.route('/add_extension', methods=['POST'])
 def add_extension():
-    name = request.form['name']
-    downloads = int(request.form['downloads'])
+    feature = request.form['feature']
+    description = int(request.form['description'])
 
     # Insert data into the database
-    cursor.execute("INSERT INTO diarys (name, downloads) VALUES (%s, %s)", (name, downloads))
+    cursor.execute("INSERT INTO diarys (feature, description) VALUES (%s, %s)", (feature, description))
     conn.commit()
     return redirect(url_for('show_exts'))
 
