@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VSCode Extensions</title>
+</head>
+<body>
+    <h1>VSCODE Extensions</h1>
+    <table border="1">
+        <tr>
+            <th>Feature</th>
+            <th>Description</th>
+        </tr>
+        {% for diary in diarys %}
+        <tr>
+            <td>{{ diary[0] }}</td>
+            <td>{{ diary[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Add New Extension</h2>
+    <form action="/add_extension" method="post">
+        <label for="feature">Feature:</label><br>
+        <input type="text" id="feature" name="feature"><br>
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
