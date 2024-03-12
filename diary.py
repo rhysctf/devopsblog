@@ -8,7 +8,7 @@ db_config = {
     'host': 'localhost',
     'user': 'root',
     'password': 'root',
-    'database': 'vscode_extensions'
+    'database': 'diary'
 }
 
 # Establish a connection to the database
@@ -17,32 +17,32 @@ cursor = conn.cursor()
 
 # Create a table if it doesn't exist
 cursor.execute("""
-    CREATE TABLE IF NOT EXISTS diarys (
+    CREATE TABLE IF NOT EXISTS diary (
         id INT AUTO_INCREMENT PRIMARY KEY,
         feature VARCHAR(255),
-        description INT(15)
+        description VARCHAR(255)
     )
 """)
 
 # Define route to display extensions
 @app.route('/')
-def show_exts():
+def show_diary():
     
     # Retrieve data from the database
-    cursor.execute("SELECT feature, description FROM diarys")
-    diarys = cursor.fetchall()
-    return render_template('diarys.html', diarys=diarys)
+    cursor.execute("SELECT feature, description FROM diary")
+    diaries = cursor.fetchall()
+    return render_template('diary.html', diaries=diaries)
 
-# Define route to add new extension
-@app.route('/add_extension', methods=['POST'])
-def add_extension():
+# Define route to add new feature
+@app.route('/add_feature', methods=['POST'])
+def add_feature():
     feature = request.form['feature']
-    description = int(request.form['description'])
+    description = request.form['description']
 
     # Insert data into the database
-    cursor.execute("INSERT INTO diarys (feature, description) VALUES (%s, %s)", (feature, description))
+    cursor.execute("INSERT INTO diary (feature, description) VALUES (%s, %s)", (feature, description))
     conn.commit()
-    return redirect(url_for('show_exts'))
+    return redirect(url_for('show_diary'))
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>VSCode Extensions</title>
+    <title>DevOps Diary</title>
 </head>
 <body>
-    <h1>VSCODE Extensions</h1>
+    <h1>DevOps Diary</h1>
     <table border="1">
         <tr>
             <th>Feature</th>
             <th>Description</th>
         </tr>
-        {% for diary in diarys %}
+        {% for entry in diaries %}
         <tr>
-            <td>{{ diary[0] }}</td>
-            <td>{{ diary[1] }}</td>
+            <td>{{ entry[0] }}</td>
+            <td>{{ entry[1] }}</td>
         </tr>
         {% endfor %}
     </table>
 
-    <h2>Add New Extension</h2>
-    <form action="/add_extension" method="post">
+    <h2>Add New Feature</h2>
+    <form action="/add_feature" method="post">
         <label for="feature">Feature:</label><br>
         <input type="text" id="feature" name="feature"><br>
         <label for="description">Description:</label><br>
